@@ -1,0 +1,22 @@
+<div class="schema-form-{{form.type}} {{form.htmlClass}}">
+
+    <label ng-show="::showTitle()">{{::form.title}}</label>
+    <md-select sf-field-model name="{{ ::form.key|sfCamelKey }}" schema-validate="form" ng-model="$$value$$">
+        <md-optgroup ng-repeat-start="(key, opt) in model[form.datas]" ng-if="opt[form.group] && opt[form.group] != optGroups[key-1][form.group]"
+            label="{{::opt[form.group]}}" aria-label="{{::opt[form.group]}}">
+            <md-option ng-repeat="(key, filtered) in model[form.datas]" ng-if="!!filtered.disabled" ng-value="::filtered[form.group]"
+                aria-label="{{::filtered[form.name]}}">
+                <img style="width:30px;" ng-src="{{filtered[form.img]}}" alt="">
+                {{::filtered[form.name]}}
+            </md-option>
+        </md-optgroup>
+        <md-option ng-if="!opt[form.group]" ng-value="::opt[form.value]" ng-repeat-end>
+            <img style="width:30px;" ng-src="{{opt[form.img]}}" alt=""> {{::opt[form.name]}}
+        </md-option>
+    </md-select>
+
+    <div ng-messages="ngModel.$error">
+        <div sf-message ng-message></div>
+    </div>
+    <div class="md-char-counter">{{ form.description }}</div>
+</div>

@@ -1,0 +1,55 @@
+<div class="form-group {{form.htmlClass}} schema-form-autocomplete" sf-layout ng-init="">
+    <md-autocomplete ng-disabled="form.readonly"
+                     sf-autocomplete
+                     sf-field-model="replaceAll"
+                     ng-model="$$value$$"
+                     ng-init="autoData={};form.init($$value$$,autoData,arrayIndex)"
+                     schema-validate="form"
+                     class="no-errors"
+                     md-is-error="ngModel.$error && ngModel.$invalid"
+                     md-input-minlength="{{ form.minInputLength || 1 }}"
+                     md-autoselect="true"
+                     md-input-name="{{form.key}}"
+                     md-no-cache="form.noCache"
+                     md-selected-item="autoData.selected"
+                     md-search-text="autoData.searchText"
+                     md-selected-item-change="form.onChange(item, form, model, modelArray, arrayIndex)"
+                     md-items="item in form.query(autoData.searchText,modelArray,arrayIndex,$parent)"
+                     md-item-text="item[form.textField]"
+                     md-floating-label="{{ form.label }}"
+                     placeholder="{{ form.placeholder }}"
+                     md-menu-class="autocomplete-custom-template">
+        <md-item-template>
+            <div>
+                <span ng-if="!form.muti"
+                      md-highlight-text="searchText">
+                    {{ item[form.textField] }}
+                </span>
+                <span ng-if="form.muti"
+                      md-highlight-text="searchText"
+                      ng-repeat="key in form.muti">
+                    {{ !$first ? (form.prefix || '-'):'' }} {{ item[key] }}
+                </span>
+            </div>
+        </md-item-template>
+        <md-not-found>
+            没有记录
+        </md-not-found>
+        <div>
+            <div ng-messages="ngModel.$error" aria-live="assertive">
+                <div sf-message ng-message></div>
+            </div>
+            <div class="md-char-counter">{{ form.description }}</div>
+        </div>
+    </md-autocomplete>
+    <!--<md-input-container style="padding: 0;margin: 0;"-->
+    <!--sf-field-model="replaceAll"-->
+    <!--ng-model="$$value$$"-->
+    <!--schema-validate="form"-->
+    <!--md-is-error="ngModel.$error && ngModel.$invalid">-->
+    <!--<div ng-messages="ngModel.$error" aria-live="assertive">-->
+    <!--<div sf-message ng-message></div>-->
+    <!--</div>-->
+    <!--<div class="md-char-counter">{{ form.description }}</div>-->
+    <!--</md-input-container>-->
+</div>

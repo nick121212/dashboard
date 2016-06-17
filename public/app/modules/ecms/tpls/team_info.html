@@ -1,0 +1,125 @@
+<!--表格数据-->
+<md-content layout="row" flex>
+    <md-content flex layout="column" md-theme="dark">
+        <ng-include src="'ecms/app/modules/page/tpls/toolbar.html'"></ng-include>
+        <md-divider></md-divider>
+        <md-table-container flex>
+            <table md-table flex class="md-table" ng-model="managerCtl.selected" flex md-progress="managerCtl.deferred">
+                <thead md-head md-order="managerCtl.queryData.order" md-content="managerCtl"
+                       md-trigger="managerCtl.onOrderChange">
+                <tr md-row>
+                    <th md-column ng-repeat="column in managerCtl.columns">
+                        {{::column.name}}
+                    </th>
+                    <th md-column ng-if="managerCtl.itemToolbars.length"></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row md-auto-select ng-repeat="item in managerCtl.clientData.datas">
+                    <td md-cell ng-repeat="column in managerCtl.columns">
+                        <span dy-compile $index="$parent.$index+1" parent="managerCtl" query="managerCtl.queryData"
+                              item="item" html="{{column.template}}"></span>
+                    </td>
+                    <td md-cell>
+                        <gridmenu aria-label="打开菜单" ng-if="managerCtl.itemToolbars.length"
+                                  tools="managerCtl.itemToolbars" item="item" is-busy="managerCtl.isBusy"
+                                  open-menu="managerCtl.material.openMenu"></gridmenu>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <!--分页数据-->
+        <md-table-pagination ng-if="managerCtl.pagination" class="md-table-pagination" flex="none"
+                             md-limit="managerCtl.queryData.limit" md-page="managerCtl.queryData.page"
+                             md-options="managerCtl.rowSelect" md-on-paginate="managerCtl.onPageChangeBind"
+                             md-total="{{managerCtl.clientData.total}}">
+        </md-table-pagination>
+    </md-content>
+    <md-content md-whiteframe="2"
+                flex-gt-sm="30"
+                flex="100"
+                class="am-fade-and-slide-right"
+                layout="column"
+                ng-show="!!managerCtl.searchMode">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>俱乐部详情</h3>
+                <span flex></span>
+                <md-button aria-label="关闭" class="md-icon-button md-ink-ripple" ng-click="managerCtl.toggleSearchBar()">
+                    <md-tooltip>
+                        关闭
+                    </md-tooltip>
+                    <ng-md-icon icon="close"></ng-md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content>
+            <md-list flex>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>俱乐部LOGO</h3>
+                        <img ng-src="{{ managerCtl.clientData.logo }}"/>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>俱乐部ID</h3>
+                        <p>{{ managerCtl.clientData.id }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>赛区</h3>
+                        <p>{{ managerCtl.clientData.site }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>建队时间</h3>
+                        <p>{{ managerCtl.clientData.found_at }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>俱乐部全称</h3>
+                        <p>{{ managerCtl.clientData.title }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>俱乐部简称</h3>
+                        <p>{{ managerCtl.clientData.name }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>所属国家</h3>
+                        <p>{{ managerCtl.clientData.location }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>教练</h3>
+                        <p>{{ managerCtl.clientData.coach }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-list-item>
+                    <div class="md-list-item-text">
+                        <h3>俱乐部简介</h3>
+                        <p>{{ managerCtl.clientData.description }}</p>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+            </md-list>
+        </md-content>
+    </md-content>
+</md-content>

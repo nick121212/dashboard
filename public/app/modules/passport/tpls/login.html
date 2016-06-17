@@ -1,0 +1,17 @@
+<h1 class="title">用户登录</h1>
+
+<div layout="row" layout-align="center center">
+    <div layout="column" flex-xs="90" flex="40">
+        <form name="form"
+              layout="column" 
+              flex 
+              sf-model="passportLoginController.formData"
+              sf-form="passportLoginController.form"
+              sf-schema="passportLoginController.schema"
+              ng-submit="passportLoginController.submit(form)">
+        </form>
+        <md-button ng-click="passportLoginController.submit(form)">
+            Login In
+        </md-button>
+    </div>
+</div>

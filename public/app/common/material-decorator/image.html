@@ -1,0 +1,5 @@
+<div aria-label="{{ form.title }}" class="{{form.htmlClass}} md-block">
+    <h3 ng-show="form.title && form.notitle !== true">{{ form.title }}</h3>
+
+    <img  alt="{{ form.title }}" ng-src="{{ $$value$$ }}" sf-field-model="replaceAll">
+</div>

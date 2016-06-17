@@ -1,0 +1,30 @@
+<div aria-label="{{ form.title }}"
+     md-is-error="ngModel.$error && ngModel.$invalid"
+     class="{{form.htmlClass}} schema-form-datepicker md-block" style="position: relative;">
+    <!--<h3 ng-show="form.title && form.notitle !== true">{{ form.title }}</h3>-->
+    <sm-date-time-picker fname="{{ form.fname }}"
+                         lable="{{ form.title }}"
+                         value="$$value$$"
+                         ng-model="$$value$$"
+                         sf-field-model="replaceAll"
+                         start-date="form.startDate"
+                         schema-validate="form"
+                         fname="{{ form.key|sfCamelKey }}"
+                         sf-changed="form"
+                         flex
+                         class="md-block"
+                         min-date="form.minDate"
+                         max-date="form.maxDate"
+                         format="{{ form.formatStr || 'YYYY-MM-DD' }}"
+                         week-start-day="{{ form.startDay || 'Monday' }}">
+    </sm-date-time-picker>
+
+    <md-input-container style="padding:0;margin:0;position:absolute;top:35px;" >
+        <!--<input class="hide" type="text" ng-model="$$value$$" sf-field-model schema-validate="form">-->
+        <div ng-messages="ngModel.$error" aria-live="assertive" md-auto-hide="false">
+            <div sf-message ng-message></div>
+        </div>
+        <div class="md-char-counter">{{ form.description }}</div>
+    </md-input-container>
+
+</div>

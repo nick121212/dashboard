@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "noImplicitAny": false,
+    "module": "amd",
+    "removeComments": true,
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "public/ecms/bower_components",
+    "public/ecms/styles",
+    "public/ecms/ueditor",
+    "public/ecms/typings",
+    "public/ecms/build",
+    "servers",
+    "typings",
+    "bin",
+    "config",
+    "controllers",
+    "db",
+    "models",
+    "node_modules",
+    "routes"
+  ],
+  "compileOnSave": true,
+  "buildOnSave": true
+}

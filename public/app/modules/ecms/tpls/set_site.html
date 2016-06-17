@@ -1,0 +1,38 @@
+<md-dialog md-theme="dark"
+           aria-label="设置当前站点"
+           flex-gt-sm="80"
+           flex="100">
+    <md-toolbar md-theme="dark">
+        <div class="md-toolbar-tools">
+            <h2>{{ formCtl.menu.title }}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button"
+                       ng-show="!formCtl.isBusy"
+                       ng-click="formCtl.close()">
+                <ng-md-icon icon="close"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content flex class="md-padding">
+        <md-progress-linear ng-if="formCtl.isBusy" md-mode="indeterminate"></md-progress-linear>
+        <md-radio-group ng-model="formCtl.currentItem.key">
+            <div ng-repeat="item in formCtl.clientData.datas" layout="row">
+                <div flex layout="row" layout-padding layout-align="start center">
+                    <md-radio-button flex
+                                     ng-value="item.key"
+                                     class="md-primary">
+                        {{item.title}}
+                    </md-radio-button>
+                </div>
+            </div>
+        </md-radio-group>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-disabled="formCtl.isBusy"
+                   ng-click="formCtl.doSelect(formCtl.currentItem.key)">
+            选择当前的站点
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+
